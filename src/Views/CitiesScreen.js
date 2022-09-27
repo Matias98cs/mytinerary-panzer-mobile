@@ -7,7 +7,6 @@ const CitiesScreen = () => {
 
   const {data: cities} = useGetAllcitiesQuery()
   
-
   return (
     <ScrollView>
       <View style={styles.containerCities} >
