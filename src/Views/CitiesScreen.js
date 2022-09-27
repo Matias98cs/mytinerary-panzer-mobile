@@ -1,18 +1,32 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, ScrollView, StyleSheet, FlatList } from 'react-native'
+import { useGetAllcitiesQuery } from '../../redux/features/CitiesAPI'
+import CardCity from '../components/Cities/CardCity'
 
 const CitiesScreen = () => {
+
+  const {data: cities} = useGetAllcitiesQuery()
+  
+
   return (
-    <View>
-      <Text style={{
-        fontSize: 40,
-        textAlign: 'center',
-        marginTop: "20%"
-      }}>
-        Cities Screen
-      </Text>
+    <ScrollView>
+    <View style={styles.containerCities} >
+      <CardCity cities={cities} />
     </View>
+    </ScrollView>
   )
 }
+
+const styles = StyleSheet.create({
+  containerCities: {
+    backgroundColor: "#DCD7C9",
+    padding: 4,
+    width: '100%',
+    flexWrap: 'wrap',
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'row'  
+  },
+});
 
 export default CitiesScreen
