@@ -6,6 +6,7 @@ import EditCityScreen from "../Views/EditCityScreen";
 import MyTinerary from "../Views/MyTinerary";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from '@react-navigation/stack';
+import DetailsScreen from "../Views/DetailsScreen";
 
 
 const Drawer = createDrawerNavigator();
@@ -30,6 +31,14 @@ function MyStack() {
         component={CitiesScreen}
         options={{
           headerShown: false,
+          headerBackTitleVisible: true
+        }}
+        />
+        <HomeStackNavigate.Screen 
+        name="Details" 
+        component={DetailsScreen}
+        options={{
+          headerShown: false,
           headerBackTitleVisible: false
         }}
         />
@@ -39,7 +48,7 @@ function MyStack() {
 
 export default function MyDrawer() {
   return (
-    <Drawer.Navigator initialRouteName="Home">
+    <Drawer.Navigator >
       <Drawer.Screen
         name="Home"
         component={MyStack}

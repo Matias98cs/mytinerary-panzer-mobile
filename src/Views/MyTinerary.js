@@ -1,7 +1,8 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 
-const MyTinerary = () => {
+const MyTinerary = (props) => {
+  console.log(props)
   return (
     <View>
       <Text style={{

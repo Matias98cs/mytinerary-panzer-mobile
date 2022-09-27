@@ -1,11 +1,15 @@
 import React from "react";
-import { FlatList, Image, StyleSheet, Text, View } from "react-native";
+import { FlatList, Image, StyleSheet, Text, Touchable, TouchableOpacity, View } from "react-native";
+import {useNavigation} from '@react-navigation/native';
 
 function CardCity({ cities }) {
+
+  const navigation = useNavigation()
   return (
     <>
       {cities?.response.map((item) => {
         return (
+          <TouchableOpacity onPress={() => navigation.navigate('Details', {id: item._id})}>
           <View key={item._id} style={styles.containerCities}>
             <View style={{backgroundColor: '#3F4E4F', borderRadius: 10 }}>
               <Image
@@ -15,6 +19,7 @@ function CardCity({ cities }) {
               <Text style={styles.textCity}>{item.city}</Text>
             </View>
           </View>
+          </TouchableOpacity>
         );
       })}
     </>
