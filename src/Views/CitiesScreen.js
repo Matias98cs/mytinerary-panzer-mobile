@@ -10,9 +10,9 @@ const CitiesScreen = () => {
 
   return (
     <ScrollView>
-    <View style={styles.containerCities} >
-      <CardCity cities={cities} />
-    </View>
+      <View style={styles.containerCities} >
+        <CardCity cities={cities} />
+      </View>
     </ScrollView>
   )
 }
