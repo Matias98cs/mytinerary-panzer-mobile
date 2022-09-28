@@ -1,9 +1,9 @@
 import { View, Text, FlatList, Image, StyleSheet, Dimensions, Animated, SafeAreaView } from 'react-native'
 import React from 'react'
 import { StatusBar } from 'expo-status-bar'
+import { useNavigation } from '@react-navigation/native';
 
 const width = Dimensions.get("window").width;
-const height = Dimensions.get("window").height;
 const width_container = width * 0.7;
 const space = 10;
 
@@ -42,6 +42,7 @@ function Carousel({ cities }) {
                     });
                     return (
                         <View style={{ width: width_container }}>
+                            
                             <Animated.View
                                 style={{
                                     marginHorizontal: space,
@@ -52,12 +53,13 @@ function Carousel({ cities }) {
                                 }}
                             >
                                 <Image source={{ uri: item[0] }} style={styles.posterImage} />
-                            <Text style={styles.carouselText}>{item[1]}</Text>
-                            </Animated.View>
+                                <Text style={styles.carouselText}>{item[1]}</Text>
+                            
+                        </Animated.View>
                         </View>
-                    );
-                }}
-            />
+    );
+}}
+/>
         </SafeAreaView >
     );
 }
@@ -81,7 +83,7 @@ const styles = StyleSheet.create({
     },
     carouselText: {
         fontSize: 25,
-        color:'#DCD7C9',
+        color: '#DCD7C9',
         paddingTop: 8
     },
 })
