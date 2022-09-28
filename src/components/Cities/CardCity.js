@@ -9,8 +9,8 @@ function CardCity({ cities }) {
     <>
       {cities?.response.map((item) => {
         return (
-          <TouchableOpacity onPress={() => navigation.navigate('Details', {id: item._id})}>
-          <View key={item._id} style={styles.containerCities}>
+          <TouchableOpacity key={item._id} onPress={() => navigation.navigate('Details', {id: item._id})}>
+          <View  style={styles.containerCities}>
             <View style={{backgroundColor: '#3F4E4F', borderRadius: 10 }}>
               <Image
                 source={{ uri: item.photo }}

@@ -8,7 +8,7 @@ const CitiesScreen = () => {
   const {data: cities} = useGetAllcitiesQuery()
   
   return (
-    <ScrollView>
+    <ScrollView style={styles.scrollStyle} >
       <View style={styles.containerCities} >
         <CardCity cities={cities} />
       </View>
@@ -21,11 +21,15 @@ const styles = StyleSheet.create({
     backgroundColor: "#DCD7C9",
     padding: 4,
     width: '100%',
+    height: '100%',
     flexWrap: 'wrap',
     display: 'flex',
     justifyContent: 'center',
     flexDirection: 'row'  
   },
+  scrollStyle: {
+    backgroundColor: '#DCD7C9',
+  }
 });
 
 export default CitiesScreen
