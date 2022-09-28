@@ -4,12 +4,11 @@ import { StatusBar } from 'expo-status-bar'
 
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
-const ancho_contenedor = width * 0.7;
-const espacio = 10;
-
+const width_container = width * 0.7;
+const space = 10;
 
 function Carousel({ cities }) {
-    let img = cities?.response.map(item => (item.photo))
+    let img = cities?.response.map(item => ([item.photo, item.city]))
     const scrollX = React.useRef(new Animated.Value(0)).current;
     return (
         <SafeAreaView style={StyleSheet.container}>
@@ -27,14 +26,14 @@ function Carousel({ cities }) {
                 showsHorizontalScrollIndicator={false}
                 contentContainerStyle={{ paddingTop: 100, paddingHorizontal: 50 }}
                 decelerationRate={0}
-                snapToInterval={ancho_contenedor}
+                snapToInterval={width_container}
                 scrollEventThrottle={16}
                 keyExtractor={(item) => item}
                 renderItem={({ item, index }) => {
                     const inputRange = [
-                        (index - 1) * ancho_contenedor, //elemento anterios
-                        index * ancho_contenedor, //elemento en curso
-                        (index + 1) * ancho_contenedor, // elemento siguiente
+                        (index - 1) * width_container, //elemento anterios
+                        index * width_container, //elemento en curso
+                        (index + 1) * width_container, // elemento siguiente
                     ];
                     const outputRange = [0, -50, 0];
                     const translateY = scrollX.interpolate({
@@ -42,17 +41,18 @@ function Carousel({ cities }) {
                         outputRange
                     });
                     return (
-                        <View style={{ width: ancho_contenedor }}>
+                        <View style={{ width: width_container }}>
                             <Animated.View
                                 style={{
-                                    marginHorizontal: espacio,
-                                    padding: espacio,
+                                    marginHorizontal: space,
+                                    padding: space,
                                     borderRadius: 34,
                                     alignItems: "center",
                                     transform: [{ translateY }],
                                 }}
                             >
-                                <Image source={{ uri: item }} style={styles.posterImage} />
+                                <Image source={{ uri: item[0] }} style={styles.posterImage} />
+                            <Text style={styles.carouselText}>{item[1]}</Text>
                             </Animated.View>
                         </View>
                     );
@@ -74,9 +74,14 @@ const styles = StyleSheet.create({
     },
     posterImage: {
         width: "100%",
-        height: ancho_contenedor * 1.2,
+        height: width_container * 1.2,
         resizeMode: "cover",
         borderRadius: 24,
         margin: 0,
+    },
+    carouselText: {
+        fontSize: 25,
+        color:'#DCD7C9',
+        paddingTop: 8
     },
 })
