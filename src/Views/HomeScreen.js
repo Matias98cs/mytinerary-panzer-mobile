@@ -1,9 +1,12 @@
 import React from "react";
 import { View, Text, Button, StyleSheet, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import Carousel from "../components/Carousel";
+import { useGetAllcitiesQuery } from "../../redux/features/CitiesAPI";
 
 const HomeScreen = () => {
   const navigation = useNavigation();
+  const { data: cities } = useGetAllcitiesQuery()
 
   return (
     <View
@@ -27,6 +30,7 @@ const HomeScreen = () => {
             marginTop: "20%",
             color: "#DCD7C9",
             paddingBottom: 15,
+            
           }}
         >
           My Tinerary
@@ -64,7 +68,10 @@ const HomeScreen = () => {
           />
         </View>
       </View>
+      <Carousel cities={cities} />
     </View>
+
+
   );
 };
 
