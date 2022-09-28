@@ -26,9 +26,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     flexDirection: 'row'  
-  },
-  scrollStyle: {
-    backgroundColor: '#DCD7C9',
   }
 });
 
