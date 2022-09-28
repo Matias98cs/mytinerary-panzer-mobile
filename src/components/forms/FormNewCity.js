@@ -31,27 +31,27 @@ export default function FormNewCity() {
 }
 
 const styles = StyleSheet.create({
-    containerInputs: {
-        display: 'flex',
-        justifyContent: "space-between" ,
-        height: "70%",
-        width: "90%",
-        borderRadius: 14,
-        padding: 12
-    },
-    inputText: {
-        padding: 10,
-        height: 45,
-        borderRadius: 14,
-        fontSize: 22,
-        backgroundColor: '#DCD7C9'
-    },
-    btnCreate: {
-        display: 'flex',
-        backgroundColor: '#A27B5C',
-        width: '50%',
-        justifyContent: 'center',
-        alignSelf: 'center',
-        borderRadius: 14,
-    }
+  containerInputs: {
+      flex:1,
+      justifyContent: "space-evenly" ,
+      height: "70%",
+      width: "90%",
+      borderRadius: 14,
+      padding: 12
+  },
+  inputText: {
+      padding: 10,
+      height: 45,
+      borderRadius: 14,
+      fontSize: 22,
+      backgroundColor: '#DCD7C9'
+  },
+  btnCreate: {
+      display: 'flex',
+      backgroundColor: '#A27B5C',
+      width: '50%',
+      justifyContent: 'center',
+      alignSelf: 'center',
+      borderRadius: 14,
+  }
 })
