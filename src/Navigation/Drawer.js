@@ -7,7 +7,7 @@ import MyTinerary from "../Views/MyTinerary";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from '@react-navigation/stack';
 import DetailsScreen from "../Views/DetailsScreen";
-
+import SingIn from '../Views/SingIn'
 
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
@@ -31,7 +31,7 @@ function MyStack() {
         component={CitiesScreen}
         options={{
           headerShown: false,
-          headerBackTitleVisible: true
+          headerBackTitleVisible: false
         }}
       />
       <HomeStackNavigate.Screen
@@ -54,10 +54,10 @@ export default function MyDrawer() {
         backgroundColor:'#DCD7C9'
       }, 
       headerStyle:{
-        backgroundColor:'#DCD7C9'
+        backgroundColor:'#DCD7C9',
       },
       headerTitleStyle: {
-        color: '#252525'
+        color: '#252525',
       } 
     }}
     >
@@ -82,10 +82,9 @@ export default function MyDrawer() {
 
       />
       <Drawer.Screen
-        name="MyTinerary"
-        component={MyTinerary}
-
-      />
+        name="Sign In"
+        component={SingIn}
+      />      
     </Drawer.Navigator>
   );
 }
