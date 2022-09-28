@@ -1,11 +1,11 @@
-import { View, Text, Image, StyleSheet, TextInput } from 'react-native'
+import { View, Text, Image, StyleSheet, TextInput, ImageBackground } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import {useCommentsAllMutation} from '../../../redux/features/CommentsAPI'
+/* import { color } from 'react-native-reanimated'; */
 
 export default function DisplayComment({id}) {
   const [findComments] = useCommentsAllMutation();
   const [comments, setCommenst] = useState([]);
-
 
   const showComments = async () => {
     try {
@@ -30,16 +30,16 @@ export default function DisplayComment({id}) {
             <View key={item._id} style={styles.containerComment}>
                 <Image
                 source={{ uri: item?.user.photo }}
-                style={{ width: 50, height: 50 }}
+                style={{ width: 50, height: 50, borderRadius: 40 }}
                 />
-                <View style={{paddingHorizontal: 5}}>
+                <View style={{paddingHorizontal: 5, width: '80%'}}>
                     <Text>{item.name}</Text>
                     <Text>{item.comment}</Text>
                 </View>
             </View>
         )
       })}
-      <TextInput style={{ marginVertical: 10 ,borderRadius: 14, height: 30, borderWidth: 1, padding: 5}} value="send you comment" />
+      <TextInput style={{color:"white", marginVertical: 10 ,borderRadius: 14, height: 30, borderWidth: 1, padding: 5}} value="send you comment" />
     </View>
   )
 }
@@ -48,11 +48,19 @@ export default function DisplayComment({id}) {
 const styles = StyleSheet.create({
     container: {
         justifyContent: 'center',
+        backgroundColor: '#3F4E4F', 
+        borderRadius: 20, 
+        padding:18,
     },
     containerComment: {
         display: 'flex',
         flexDirection: 'row',
         alignContent: 'center',
-        paddingVertical: 8
+        padding:8,
+        borderRadius: 20,
+        width: '99%',
+        paddingHorizontal: 15,
+        marginVertical: 5,        
+        backgroundColor: '#DCD7C9',
     }
 })
