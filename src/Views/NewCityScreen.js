@@ -1,18 +1,26 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
+import { ScrollView } from 'react-native-gesture-handler'
 
 const NewCityScreen = () => {
   return (
-    <View>
+    <ScrollView style={styles.scrollStyle}>
       <Text style={{
         fontSize: 40,
         textAlign: 'center',
         marginTop: "20%"
       }}>
-        New City Screen
+        New City 🧳
       </Text>
-    </View>
+
+    </ScrollView>
   )
 }
+
+const styles = StyleSheet.create({
+  scrollStyle: {
+    backgroundColor: '#DCD7C9',
+  }
+});
 
 export default NewCityScreen
