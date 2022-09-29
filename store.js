@@ -22,6 +22,6 @@ export default configureStore({
         auth: userSlice,
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(
-        CitiesAPI.middleware, Itinerary.middleware, ActivitiesaAPI.middleware, CommentsAPI.middleware
+        CitiesAPI.middleware, Itinerary.middleware, ActivitiesaAPI.middleware, CommentsAPI.middleware, userAPI.middleware, myTineraryAPI.middleware
     )
 })
