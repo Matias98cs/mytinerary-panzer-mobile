@@ -82,6 +82,11 @@ export default function MyDrawer() {
 
       />
       <Drawer.Screen
+        name="My Itineraries"
+        component={MyTinerary}
+
+      />
+      <Drawer.Screen
         name="Sign In"
         component={SingIn}
       />      
