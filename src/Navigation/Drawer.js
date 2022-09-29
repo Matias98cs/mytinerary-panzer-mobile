@@ -22,14 +22,13 @@ import { Button, View } from "react-native";
 import { setReload } from "../../redux/slices/ReloadSlice";
 import { useNavigation } from "@react-navigation/native";
 import { useGetSignOutUserMutation } from "../../redux/features/userAPI";
-
+import SignUp from "../Views/SingUp";
 
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
 const HomeStackNavigate = createStackNavigator();
 
 function MyStack() {
-
   return (
     <HomeStackNavigate.Navigator initialRouteName="HomeScreen">
       <HomeStackNavigate.Screen
@@ -60,37 +59,33 @@ function MyStack() {
 }
 
 function CustomDrawerContent(props) {
-
-  const email = useSelector((state) => state.auth.user?.mail)
+  const email = useSelector((state) => state.auth.user?.mail);
   const [signoutUser] = useGetSignOutUserMutation();
+  const logged = useSelector((state) => state.auth.logged);
 
   const dispatch = useDispatch();
-  const navigation = useNavigation()
+  const navigation = useNavigation();
   async function signOut() {
     const sendEmail = {
-      mail: email
-    }
-    try{
-      let res = await signoutUser(sendEmail)
-      if(res.data?.success){
-        dispatch(setReload())
-        dispatch(deleteAuthUser())
-        AsyncStorage.removeItem("token")
-        navigation.goBack()
+      mail: email,
+    };
+    try {
+      let res = await signoutUser(sendEmail);
+      if (res.data?.success) {
+        dispatch(setReload());
+        dispatch(deleteAuthUser());
+        AsyncStorage.removeItem("token");
+        navigation.goBack();
       }
-    }catch(error){
-      console.log(error)
+    } catch (error) {
+      console.log(error);
     }
-
   }
 
   return (
     <DrawerContentScrollView {...props}>
       <DrawerItemList {...props} />
-      <DrawerItem
-        label="Sign Out"
-        onPress={signOut}
-      />
+      {logged ? <DrawerItem label="Sign Out" onPress={signOut} /> : null}
     </DrawerContentScrollView>
   );
 }
@@ -149,25 +144,20 @@ export default function MyDrawer() {
       }}
     >
       <Drawer.Screen name={logged ? user : "Home"} component={MyStack} />
-      {
-        logged 
-        ?
+      {logged ? (
         <>
-        <Drawer.Screen name="NewCity" component={NewCityScreen} />
-        <Drawer.Screen name="EditCity" component={EditCityScreen} />
-        <Drawer.Screen name="My Itineraries" component={MyTinerary} />
+          <Drawer.Screen name="NewCity" component={NewCityScreen} />
+          <Drawer.Screen name="EditCity" component={EditCityScreen} />
+          <Drawer.Screen name="My Itineraries" component={MyTinerary} />
         </>
-        :
-        null
-      }
+      ) : null}
       <Drawer.Screen name="Cities" component={CitiesScreen} />
-      {
-        logged
-        ?
-        null
-        :
-        <Drawer.Screen name="Sign In" component={SingIn} />
-      }
+      {logged ? null : (
+        <>
+          <Drawer.Screen name="Sign In" component={SingIn} />
+          <Drawer.Screen name="Sign Up" component={SignUp} />
+        </>
+      )}
     </Drawer.Navigator>
   );
 }
