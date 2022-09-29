@@ -139,26 +139,3 @@ const styles = StyleSheet.create({
   }
 
 })
-
-/* <View style={{
-          backgroundColor: '#3f4e4fbc',
-          height: '100%'
-        }}>
-          <Text>
-            Country
-          </Text>
-          <Text>
-            City
-          </Text>
-          <View>
-            <Text>
-              Duration:
-            </Text>
-            <Text>
-              Price: $
-            </Text>
-            <Text>
-              Tags:
-            </Text>
-          </View>
-        </View> */

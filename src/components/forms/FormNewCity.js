@@ -24,7 +24,7 @@ export default function FormNewCity() {
         <TextInput style={styles.inputText} placeholder='Description'/>
       </View>
       <View style={styles.btnCreate}>
-        <Button title='Send' color="#eee"/>
+        <Button title='Send' color="#A27B5C"/>
       </View>
     </View>
   )
