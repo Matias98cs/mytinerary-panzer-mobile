@@ -16,8 +16,7 @@ export const usersAPI = createApi({
                     method: 'POST',
                     body: payload
                 }
-            },
-            invalidatesTags: ['Post'],
+            }
         }),
         getSignInUser: builder.mutation({
             query(payload){
@@ -35,8 +34,7 @@ export const usersAPI = createApi({
                     method: 'POST',
                     body: payload
                 }
-            },
-            invalidatesTags: ['Post'],
+            }
         }),
         signInToken: builder.mutation({
             query: (token) => ({
