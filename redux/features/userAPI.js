@@ -26,8 +26,7 @@ export const usersAPI = createApi({
                     method: 'POST',
                     body: payload
                 }
-            },
-            invalidatesTags: ['Post'],
+            }
         }),
         getSignOutUser: builder.mutation({
             query(payload){

@@ -11,17 +11,14 @@ import DetailsScreen from "../Views/DetailsScreen";
 import SingIn from '../Views/SingIn'
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { setAuthUser } from "../../redux/slices/userSlice";
 
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
 const HomeStackNavigate = createStackNavigator()
 
 function MyStack() {
-  
-  const [singInToken] = useSignInTokenMutation()
-  const [admin , setAdmin] = useState()
-  const role = useSelector(state => state.auth.role)
-  const dispatch = useDispatch()
 
   return (
     <HomeStackNavigate.Navigator
@@ -56,6 +53,39 @@ function MyStack() {
 }
 
 export default function MyDrawer() {
+
+    
+  const [singInToken] = useSignInTokenMutation()
+  const [admin , setAdmin] = useState()
+  const [token, setToken] = useState()
+  const user = useSelector(state => state.auth.user?.name)
+  const reload = useSelector(state => state.reload.reload)
+  const dispatch = useDispatch()
+  const logged = useSelector(state => state.auth.logged)
+
+  
+  async function verifyToken(){
+    const value = await AsyncStorage.getItem('token')
+    try{
+      let res = await singInToken(value)
+      if(res.data?.success){
+        dispatch(setAuthUser(res.data.response.user))
+      }else{
+        AsyncStorage.removeItem('token')
+      }
+    }catch(error){
+      AsyncStorage.removeItem('token')
+      console.log(error)
+    }
+  }
+
+  
+  useEffect(() => {
+    if(AsyncStorage.getItem('token').then(value => setToken(value))){
+      verifyToken()
+    }
+  },[])
+
   return (
     <Drawer.Navigator
     screenOptions={{
@@ -71,7 +101,13 @@ export default function MyDrawer() {
     }}
     >
       <Drawer.Screen
-        name="Home"
+        name={
+          logged
+          ?
+          user
+          :
+          "Home"
+        }
         component={MyStack}
 
       />
