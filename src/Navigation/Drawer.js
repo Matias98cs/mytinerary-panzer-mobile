@@ -4,16 +4,25 @@ import CitiesScreen from "../Views/CitiesScreen";
 import NewCityScreen from "../Views/NewCityScreen";
 import EditCityScreen from "../Views/EditCityScreen";
 import MyTinerary from "../Views/MyTinerary";
+import { useSignInTokenMutation } from '../../redux/features/userAPI';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from '@react-navigation/stack';
 import DetailsScreen from "../Views/DetailsScreen";
 import SingIn from '../Views/SingIn'
+import { useDispatch, useSelector } from "react-redux";
+import { useState, useEffect } from "react";
 
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
 const HomeStackNavigate = createStackNavigator()
 
 function MyStack() {
+  
+  const [singInToken] = useSignInTokenMutation()
+  const [admin , setAdmin] = useState()
+  const role = useSelector(state => state.auth.role)
+  const dispatch = useDispatch()
+
   return (
     <HomeStackNavigate.Navigator
       initialRouteName="HomeScreen"
