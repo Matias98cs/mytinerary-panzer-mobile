@@ -161,7 +161,13 @@ export default function MyDrawer() {
         null
       }
       <Drawer.Screen name="Cities" component={CitiesScreen} />
-      <Drawer.Screen name="Sign In" component={SingIn} />
+      {
+        logged
+        ?
+        null
+        :
+        <Drawer.Screen name="Sign In" component={SingIn} />
+      }
     </Drawer.Navigator>
   );
 }

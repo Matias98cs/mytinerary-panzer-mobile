@@ -42,7 +42,7 @@ export default function FormSignIn() {
         dispatch(setReload())
         setMail("")
         setPass("")
-        navigation.goBack()
+        navigation.navigate('Cities')
       }
     } catch (error) {
       console.log(error)
