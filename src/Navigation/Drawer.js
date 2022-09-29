@@ -149,11 +149,18 @@ export default function MyDrawer() {
       }}
     >
       <Drawer.Screen name={logged ? user : "Home"} component={MyStack} />
+      {
+        logged 
+        ?
+        <>
+        <Drawer.Screen name="NewCity" component={NewCityScreen} />
+        <Drawer.Screen name="EditCity" component={EditCityScreen} />
+        <Drawer.Screen name="My Itineraries" component={MyTinerary} />
+        </>
+        :
+        null
+      }
       <Drawer.Screen name="Cities" component={CitiesScreen} />
-      <Drawer.Screen name="NewCity" component={NewCityScreen} />
-
-      <Drawer.Screen name="EditCity" component={EditCityScreen} />
-      <Drawer.Screen name="My Itineraries" component={MyTinerary} />
       <Drawer.Screen name="Sign In" component={SingIn} />
     </Drawer.Navigator>
   );

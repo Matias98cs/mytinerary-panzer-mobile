@@ -10,8 +10,8 @@ export default function DisplayComment({ id }) {
   const showComments = async () => {
     try {
       let res = await findComments(id)
-      if (res?.data.success) {
-        setCommenst(res?.data.response);
+      if (res.data?.success) {
+        setCommenst(res.data?.response);
         // console.log(res?.data.response)
       }
     } catch (error) {
@@ -29,12 +29,12 @@ export default function DisplayComment({ id }) {
         return (
           <View key={item._id} style={styles.containerComment}>
             <Image
-              source={{ uri: item?.user.photo }}
+              source={{ uri: item.user?.photo && item.user?.photo }}
               style={{ width: 50, height: 50, borderRadius: 40 }}
             />
             <View>
               <View>
-                <Text style={{ fontWeight: 'bold', paddingHorizontal: 10}}>{item?.user.name}</Text>
+                <Text style={{ fontWeight: 'bold', paddingHorizontal: 10}}>{item.user?.name}</Text>
               </View>
               <View style={{ paddingHorizontal: 10, width: '100%', marginTop:-5}}>
                 <Text>{item.name}</Text>
