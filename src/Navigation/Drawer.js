@@ -62,6 +62,7 @@ export default function MyDrawer() {
   const reload = useSelector(state => state.reload.reload)
   const dispatch = useDispatch()
   const logged = useSelector(state => state.auth.logged)
+  const role = useSelector(state => state.auth.role)
 
   
   async function verifyToken(){
@@ -79,7 +80,15 @@ export default function MyDrawer() {
     }
   }
 
-  
+  useEffect(() => {
+    if(role === "admin"){
+      setAdmin(true)
+    }else if(role === "user") {
+      setAdmin(false)
+    }
+  }, [role])
+
+    
   useEffect(() => {
     if(AsyncStorage.getItem('token').then(value => setToken(value))){
       verifyToken()
@@ -101,7 +110,8 @@ export default function MyDrawer() {
     }}
     >
       <Drawer.Screen
-        name={
+        name=
+        {
           logged
           ?
           user
@@ -116,11 +126,17 @@ export default function MyDrawer() {
         component={CitiesScreen}
 
       />
-      <Drawer.Screen
-        name="NewCity"
-        component={NewCityScreen}
 
-      />
+      {
+        admin
+        ?
+        <Drawer.Screen
+          name="NewCity"
+          component={NewCityScreen}
+  
+        />
+        : null
+      }
       <Drawer.Screen
         name="EditCity"
         component={EditCityScreen}
