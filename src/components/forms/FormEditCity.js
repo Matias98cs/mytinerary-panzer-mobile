@@ -12,7 +12,7 @@ export default function FormEditCity() {
       <TextInput style={styles.styleInput} placeholder='Fundation'  placeholderTextColor="gray" />
       <TextInput style={styles.styleInput} placeholder='Description' placeholderTextColor="gray"/>
       <View style={styles.styleBtn}>
-        <Button title='Edit' color="#2C3639"/>
+        <Button title='Edit' color="#eee"/>
       </View>
     </View>
   )

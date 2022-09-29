@@ -1,4 +1,4 @@
-import { View, Text, FlatList, Image, StyleSheet, Dimensions, Animated, SafeAreaView } from 'react-native'
+import { View, Text, FlatList, Image, StyleSheet, Dimensions, Animated, SafeAreaView, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { StatusBar } from 'expo-status-bar'
 import { useNavigation } from '@react-navigation/native';
@@ -8,7 +8,9 @@ const width_container = width * 0.7;
 const space = 10;
 
 function Carousel({ cities }) {
-    let img = cities?.response.map(item => ([item.photo, item.city]))
+    let img = cities?.response.map(item => ([item.photo, item.city, item._id]))
+
+    const navigation = useNavigation()
     const scrollX = React.useRef(new Animated.Value(0)).current;
     return (
         <SafeAreaView style={StyleSheet.container}>
@@ -41,25 +43,24 @@ function Carousel({ cities }) {
                         outputRange
                     });
                     return (
-                        <View style={{ width: width_container }}>
-                            
-                            <Animated.View
-                                style={{
-                                    marginHorizontal: space,
-                                    padding: space,
-                                    borderRadius: 34,
-                                    alignItems: "center",
-                                    transform: [{ translateY }],
-                                }}
-                            >
-                                <Image source={{ uri: item[0] }} style={styles.posterImage} />
-                                <Text style={styles.carouselText}>{item[1]}</Text>
-                            
-                        </Animated.View>
-                        </View>
-    );
-}}
-/>
+                        <TouchableOpacity key={item._id} onPress={() => navigation.navigate('Details', { id: item[2] })}>
+                            <View style={{ width: width_container }}>
+                                <Animated.View
+                                    style={{
+                                        marginHorizontal: space,
+                                        padding: space,
+                                        borderRadius: 34,
+                                        alignItems: "center",
+                                        transform: [{ translateY }],
+                                    }}>
+                                    <Image source={{ uri: item[0] }} style={styles.posterImage} />
+                                    <Text style={styles.carouselText}>{item[1]}</Text>
+                                </Animated.View>
+                            </View>
+                        </TouchableOpacity>
+                    );
+                }}
+            />
         </SafeAreaView >
     );
 }
