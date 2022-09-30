@@ -20,7 +20,7 @@ export default function Itineraries({ item }) {
   return (
     <>
       <View style={styles.itinerariesContainer}>
-        <Text style={styles.texto}>{item.name}</Text>
+        <Text style={styles.textoTitle}>{item.name}</Text>
         <Activities id={item._id} />
         <View style={styles.description}>
           <Text style={styles.texto}>Price: ${item.price}</Text>
@@ -58,10 +58,17 @@ const styles = StyleSheet.create({
   texto: {
     fontSize: 19,
   },
+  textoTitle:{
+    fontSize: 19,
+    textAlign:'center',
+    marginVertical: 10,
+    fontWeight:'500',
+    marginHorizontal: 5
+  },
   btnShow: {
     backgroundColor: "#A27B5C",
     borderRadius: 12,
     fontWeight: "bold",
-
+    marginVertical: 15
   },
 });
