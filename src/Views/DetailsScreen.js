@@ -12,7 +12,7 @@ import Itineraries from "../components/itineraries/Itineraries";
 import { ScrollView } from "react-native-gesture-handler";
 
 export default function DetailsScreen(props) {
-  
+
   const [getOneCity] = useGetCityForIdMutation();
   const [getItineraries] = useItinerariesForDetailsMutation();
   const { id } = props.route?.params;
@@ -46,44 +46,60 @@ export default function DetailsScreen(props) {
         <Text style={{ fontSize: 25, fontWeight: "bold", padding: 6 }}>
           {dataCity.city}
         </Text>
-        <Image
-          source={{ uri: dataCity.photo }}
-          style={{
-            width: 260,
-            height: 250,
-            borderTopLeftRadius: 25,
-            borderBottomRightRadius: 25,
-          }}
-        />
-        <View style={styles.desDetail}>
+        <View>
+          <Image
+            source={{ uri: dataCity.photo }}
+            style={{
+              width: 260,
+              height: 250,
+              borderTopLeftRadius: 25,
+              borderBottomRightRadius: 25,
+            }}
+          />
           <Text style={styles.textDetail}>{dataCity.country}</Text>
-          <Text style={styles.desDetail}>Population:</Text>
-          <Text style={styles.texto}>{dataCity.population}</Text>
-          <Text style={styles.desDetail}>Fundation:</Text>
-          <Text style={styles.texto}> {date}</Text>
+        </View>
+        <View style={styles.container}>
+          <View style={{
+            display: 'flex', flexDirection: 'row'
+          }}>
+            <Text style={styles.desDetail}>Population:</Text>
+            <Text style={styles.texto}>{dataCity.population}</Text>
+          </View>
+          <View style={{
+            display: 'flex', flexDirection: 'row'
+          }}>
+            <Text style={styles.desDetail}>Fundation:</Text>
+            <Text style={styles.texto}> {date}</Text>
+          </View>
           <Text style={styles.desDetail}>Description:</Text>
-          <Text style={styles.textoDes}> {dataCity.description?.slice(0,100)}...</Text>
+          <Text style={styles.textoDes}> {dataCity.description?.slice(0, 100)}...</Text>
         </View>
         <Text style={styles.titleIti}>ITINERARY</Text>
         <View>
-        {dataItinerary?.map( item => {
-          return(
-            <Itineraries key={item._id} item={item} />
-          )
-        })}
+          {dataItinerary?.map(item => {
+            return (
+              <Itineraries key={item._id} item={item} />
+            )
+          })}
+        </View>
       </View>
-      </View>
-     
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#3f4e4fdc',
+    padding: 12,
+    marginVertical: 10,
+    borderRadius: 10,
+    marginHorizontal: 6,
+  },
   textDetail: {
     textAlign: "center",
     fontSize: 24,
     fontWeight: "bold",
-    padding: 5,
+    padding: 10,
   },
   detailContainer: {
     alignItems: "center",
@@ -95,16 +111,19 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     paddingHorizontal: 5,
     textDecorationLine: "underline",
+    color: 'white',
   },
   texto: {
     fontSize: 19,
-    paddingHorizontal: 15,
     paddingTop: 4,
+    color: '#eee',
   },
   textoDes: {
     paddingHorizontal: 15,
     fontSize: 20,
-    fontStyle: "italic",
+    padding: 5,
+    color: '#eee',
+    textAlign: 'justify',
   },
   titleIti: {
     textAlign: 'center',
